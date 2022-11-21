@@ -2,7 +2,7 @@
 //vamos a crear las funciones de promesas para hacer peticiones a las apis de operaciones en catalogo de carrito
 //siempre que hay un async(es la funcion que invoca) el await(es la funcion que regresa el valor, es el que espera la promesa)
 //async(asincrono) es una promesa
-const leerCatalogo = async () => {
+/*const leerCatalogo = async () => {
     //concatenamos la url que necesitamos para productos del catalogo
     //solo funciona para el carrito
     let urlProducts = urlCatalogo+'?apikey='+apiKey;  
@@ -23,5 +23,14 @@ const leerCatalogo = async () => {
     
     console.log('Api de Catalogo',myJson);
     return myJson;
-
+}*/
+    
+const leerCatalogo = async () => {
+    let urlProducts = urlCatalogo+'?apikey='+apiKey;    
+    const response = await fetch(urlProducts, {
+        method: 'GET'
+    });
+    const myJson = await response.json(); 
+    // console.log(myJson);
+    return myJson;
 }
