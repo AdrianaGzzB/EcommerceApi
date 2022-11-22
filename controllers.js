@@ -11,6 +11,7 @@
         //le pasamos url,metodo,headers y body
         method: 'GET',
         headers: { 
+            //es para el que produce la api y no para el que la consume 
             //le decimos que lo queremos en JSON
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -29,6 +30,40 @@ const leerCatalogo = async () => {
     let urlProducts = urlCatalogo+'?apikey='+apiKey;    
     const response = await fetch(urlProducts, {
         method: 'GET'
+    });
+    const myJson = await response.json(); 
+    // console.log(myJson);
+    return myJson;
+}
+//guardar carrito,leercarrito y eliminar carrito es por el i
+const leerCarrito = async (userId) => {
+    let urlProducts = urlCarrito + userId +'?apikey='+apiKey;    
+    const response = await fetch(urlProducts, {
+        method: 'GET'
+    });
+    const myJson = await response.json(); 
+    console.log('leer carrito',myJson[0]['carrito']);
+    return myJson[0]['carrito'];
+}
+
+const guardarCarrito = async (carrito, userId) => {
+    let url = urlCarrito + userId +'?apikey='+apiKey;    
+    const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+           "id" : userId,
+           "carrito" : carrito
+        })
+     });
+    const myJson = await response.json(); 
+    // console.log(myJson);
+    return myJson;
+}
+
+const eliminarCarrito = async (userId) => {
+    let urlProducts = urlCarrito + userId +'?apikey='+apiKey;    
+    const response = await fetch(urlProducts, {
+        method: 'DELETE'
     });
     const myJson = await response.json(); 
     // console.log(myJson);
