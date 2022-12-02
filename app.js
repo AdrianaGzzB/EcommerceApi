@@ -29,13 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     else {
         // pedir usuario
         alert('no hay usuario');
-    }
-
-
-    /*if (localStorage.getItem('carrito')) {
-        carrito = JSON.parse(localStorage.getItem('carrito'))
-        ActulizarCarrito();
-    } */
+    }   
 })
 const crearCarrito = ()=> {
     alert ('hola')
@@ -57,10 +51,7 @@ const crearCarrito = ()=> {
     div2.insertAdjacentHTML("beforeend","<p class='precioProducto'>PrecioTotal: $" + precioTotal +"</p>");
     contenedorCarrito.appendChild(div2)
     div2.insertAdjacentHTML("beforeend", "<button onclick='vaciarCarrito()' class='boton-vaciar'>Vaciar Carrito</button>");
-    
-   //console.log('crear carrito', carrito)
-   //console.log('preciototal', precioTotal)
-}
+  }
 const crearProductos=() => {
     stockProductos.forEach((producto) => {
         //1.    crear un div y pegarle la clase css 
@@ -68,7 +59,7 @@ const crearProductos=() => {
         //3.    anidar el nuevo elemento al contenedor de productos 
         //4.    crear el boton de cada producto 
         //5.    generar el evento click al boton creado y asociarlo a la funcion agregar carrito   
-        // ---------------------------------------------------------------------------------------------------------- 
+        //--------------------------------------------------------------------------------------------------------- 
         const div = document.createElement('div');
         div.classList.add('producto');
         div.insertAdjacentHTML("beforeend", "<img src=" + producto.img + ">");
@@ -87,7 +78,6 @@ const crearProductos=() => {
 }
 //llenar el contenedor de productos con cada producto del catalogo del stock.js
 
-//crear funcion AgregarCarrito
 const AgregarCarrito = (prodid) => {
     const existe = carrito.some(prod => prod.id === prodid) 
     
@@ -105,7 +95,6 @@ const AgregarCarrito = (prodid) => {
   ActulizarCarrito() 
 }
 
-//crear funcion ActualizarCarrito
 //con el async hacemos una promesa
 const ActulizarCarrito= async() => {
     //console.log('actualizarCarrito-userId',userId)
@@ -115,12 +104,12 @@ const ActulizarCarrito= async() => {
       //if(carrito.length>0){
         crearCarrito();
       //}
-     // const guardar=await guardarCarrito(carrito,userId) 
+     const guardar=await guardarCarrito(carrito,userId) 
 }
 
 // Eliminar del carrito
 const eliminarDelCarrito=(Id)=>{
-    
+
     console.log('EliminarCarrito',Id)
     console.log('carritoActualizado-inicio', carrito)
     const item=carrito.find((elemento)=> elemento.id===Id)

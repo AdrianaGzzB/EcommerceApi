@@ -45,8 +45,22 @@ const leerCarrito = async (userId) => {
     console.log('leer carrito',myJson[0]['carrito']);
     return myJson[0]['carrito'];
 }
-
 const guardarCarrito = async (carrito, userId) => {
+    let url = urlCarrito + userId +'?apikey='+apiKey; 
+    const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+            "id":userId,
+            "carrito":carrito
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+          }
+     });
+    const myJson = await response.json(); 
+    return myJson;
+}
+/*const guardarCarrito = async (carrito, userId) => {
     let url = urlCarrito + userId +'?apikey='+apiKey;    
     const response = await fetch(url, {
         method: 'POST',
@@ -58,7 +72,7 @@ const guardarCarrito = async (carrito, userId) => {
     const myJson = await response.json(); 
     // console.log(myJson);
     return myJson;
-}
+}*/
 
 const eliminarCarrito = async (userId) => {
     let urlProducts = urlCarrito + userId +'?apikey='+apiKey;    
